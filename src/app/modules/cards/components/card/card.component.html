@@ -1,4 +1,4 @@
-<div class="card">
-    <h3 class="card-header">Provérbios 3:4-6</h3>
-    <p class="card-body">Confia em Jeová de todo o seu coração e não te estribes em sua própria compreensão...</p>
+<div class="card" *ngFor="let scripture of scripturesList">
+    <h3 class="card-header">{{ scripture.name }}</h3>
+    <p class="card-body">{{ scripture.text }}</p>
 </div>

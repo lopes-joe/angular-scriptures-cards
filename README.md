@@ -25,3 +25,37 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# Scripture Cards Project
+
+## Resumo do projeto
+Aplicativo que contenha cards com textos da Bíblia para memorização e também para jogos bíblicos.
+
+## Funcionalidades principais
+
+### Cards
+- Marcar texto como “conhecido”*
+- Marcar texto como “memorizar”*
+- Esconder nome do texto
+- Exibição do conteúdo do cartão com janela modal
+*as marcações dos textos podem ser genéricas, assim podem ser usadas para diversas finalidades, como para jogos, ou sugestões de memorizaçao etc
+
+### Criador de cards
+- Criar cards com (1) texto e (2) nome do texto
+- Implementar automaticamente atributos relacionados às funcionalidades dos cards
+- Salvar novos cards no local Storage
+
+### Módulo de Estatísticas
+- Criar gráfico que mostra quantos cards contém cada tipo de marcação
+
+## Conhecimentos a serem explorados
+- Desenvolvimento em Angular 13
+- Criação de módulos
+- Criação de componentes
+- Criação de serviços
+- Criação de model
+- Criação de rotas
+- Recursos nos templates do Angular
+- Uso de diretivas
+- Uso de pipes
+- Janelas modais
