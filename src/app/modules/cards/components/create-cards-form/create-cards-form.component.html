@@ -3,8 +3,18 @@
     #createCardForm="ngForm"
     (ngSubmit)="onSubmit(createCardForm)"
 >
-    <input name="name" type="text" ngModel><br>
-    <input name="text" type="text" ngModel><br>
+    <input 
+        name="name" 
+        type="text"
+        placeholder="Gênesis 1:1"
+        ngModel
+    ><br>
+    <textarea 
+        name="text" 
+        rows="3"
+        placeholder="No princípio..." 
+        ngModel
+    ></textarea><br>
     <input type="submit"><br>
 
 </form>

@@ -12,7 +12,7 @@ export class CardComponent implements OnInit {
     private cardsService : CardsService
   ) { }
 
-  scripturesList = this.cardsService.scripturesList;
+  scripturesList = this.cardsService.getAll();
 
   ngOnInit(): void {
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { CardsService } from '../../services/cards';
 
 @Component({
   selector: 'app-create-cards-form',
@@ -9,17 +10,15 @@ import { NgForm } from '@angular/forms';
 export class CreateCardsFormComponent implements OnInit {
 
   constructor(
-    private ngForm : NgForm
+    private ngForm : NgForm,
+    private cardsService : CardsService
   ) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(form : any) : void{
-    localStorage.setItem(
-      'scripture', 
-      JSON.stringify({id : new Date().getTime() , ...form.value})
-    )
-    window.alert("Texto criado com sucesso: " + JSON.stringify({id : new Date().getTime() , ...form.value}))
+  onSubmit(form : NgForm) : void{
+    this.cardsService.onSubmit(form);
   }
+    
 }
