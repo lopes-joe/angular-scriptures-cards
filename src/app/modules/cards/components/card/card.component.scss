@@ -1,22 +1,87 @@
 :host {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
 
-    .card {
-        font-size: 16px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 1rem;
-        padding: 1.5rem;
-        width: 180px;
-        max-width: 180px;
+  .card {
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    width: 216px;
 
-    
-        h3{
-            font-size: 20px;
-            padding-bottom: 1rem;
-            color: rgb(68, 230, 200);
-        }
+    .card-header {
+      font-size: 18px;
+      color: rgb(255, 196, 86);
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      padding: 0;
+      padding-bottom: 0.5rem;
+      border: none;
+
+      mat-icon {
+        font-size: 22px;
+        display: flex;
+        align-items: flex-end;
+        cursor: pointer;
+      }
     }
-}
 
+    .dont-show {
+      filter: opacity(0.6);
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.88);
+      height: 120px;
+      font-size: 14px;
+    }
+
+    nav {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-evenly;
+      background-color: rgba(255, 255, 255, 0.08);
+      padding: 0.2rem;
+      border-radius: 1rem;
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.05rem;
+        border-radius: 50%;
+        border: none;
+        filter: opacity(0.6);
+        background-color: transparent;
+
+        mat-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      .knew-button {
+        color: rgb(0, 255, 179);
+      }
+      .to-memorize-button {
+        color: rgb(0, 208, 255);
+        mat-icon {
+          font-size: 27px;
+          margin-top: 1px;
+        }
+      }
+      .delete-button {
+        color: rgb(242, 86, 39);
+      }
+    }
+
+    .active {
+      filter: opacity(1)!important;
+      filter: drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.64))!important;
+    }
+
+  }
+}

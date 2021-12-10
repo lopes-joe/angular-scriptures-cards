@@ -1,0 +1,20 @@
+<div class="modal-container">
+  <span (click)="onClose()" class="modal-close-button">
+    <mat-icon>highlight_off</mat-icon>
+  </span>
+  <h3>Faça alterações em seu cartão</h3>
+  <form
+    #updateCardForm="ngForm"
+    (ngSubmit)="onSubmit(updateCardForm, scripture.id)"
+  >
+    <input name="name" type="text" [(ngModel)]="scripture.name" ngModel /><br />
+    <textarea
+      name="text"
+      rows="3"
+      [(ngModel)]="scripture.text"
+      ngModel
+    ></textarea
+    ><br />
+    <input type="submit" /><br />
+  </form>
+</div>

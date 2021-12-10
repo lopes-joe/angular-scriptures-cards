@@ -1,60 +1,82 @@
 import { Injectable, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { CardModel } from '../../models/card.model';
+import { DatabaseService } from '../database';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CardsService {
+  constructor(public databaseService: DatabaseService) {}
 
-  getAll() : any {
-    if(localStorage.getItem('scriptures')){
-      let localStorageData : any = localStorage.getItem('scriptures');
-      let lsDataObj = JSON.parse(localStorageData); 
-      let lsDataAllAray : any = Object.entries(lsDataObj);
-      
-      let allData = lsDataAllAray.map((scripture : any) => {
-        return {id: scripture[0] , ...scripture[1]};
-      })
-      return allData;
-    }
-      return this.scripturesList;
-  }
-
-  onSubmit(form : NgForm) : void{
+  insert(form: NgForm): void {
     let newItemId = new Date().getTime().toString();
-    if(localStorage.getItem('scriptures')){
-      let localStorageData : any = localStorage.getItem('scriptures');
-      let lsDataObject : any = JSON.parse(localStorageData);
-      lsDataObject[newItemId] = {...form.value};
-      localStorage.setItem('scriptures', JSON.stringify(lsDataObject));
+    if (localStorage.getItem('scriptures')) {
+      let databaseAsObject: CardModel =
+        this.databaseService.getDatabaseAsObject();
+      databaseAsObject[newItemId] = { ...form.value };
+      localStorage.setItem('scriptures', JSON.stringify(databaseAsObject));
     } else {
-      let newItem : any = {};
-      newItem[newItemId] = {...form.value};
+      let newItem: CardModel = new CardModel();
+      newItem[newItemId] = { ...form.value };
       localStorage.setItem('scriptures', JSON.stringify(newItem));
     }
+    window.alert('Cartão criado com sucesso!');
+    form.reset();
   }
 
-    scripturesList = [
-    {
-      name: "Provérbios 3:4-6",
-      text: "Confia em Jeová de todo o seu coração e não te estribes em sua própria compreensão..."
-    },
-    {
-      name: "Apocalipse 4:11",
-      text: "Digno és Jeová de receber toda a glória, honra e poder, por que criaste todas as coisas..."
-    },
-    {
-      name: "Filpenses 6:8",
-      text: "A paz de Deus que excede todo pensamento guardará o seu coração..."
-    },
-    {
-      name: "Salmo 37:29",
-      text: "Os mansos pussirão a terra e se deleitarão em abundância de paz..."
-    },
-    {
-      name: "Mateus 7:12",
-      text: "Assim como quereis que os homens façam as vós, fazeis do mesmo modo a eles..."
+  delete(id: number) {
+    if (window.confirm('Tem certeza de que deseja deletar este cartão?')) {
+      let databaseAsObject: CardModel =
+        this.databaseService.getDatabaseAsObject();
+      delete databaseAsObject[id];
+      localStorage.setItem('scriptures', JSON.stringify(databaseAsObject));
     }
-  ]
-  constructor() { }
+  }
+
+  update(form: NgForm, id: number): void {
+    let databaseAsObject: CardModel = this.databaseService.getDatabaseAsObject();
+    databaseAsObject[id] = form.value;
+    localStorage.setItem('scriptures', JSON.stringify(databaseAsObject));
+    form.reset();
+  }
+
+  setAsKnew(id: number) {
+    let databaseAsObject: CardModel =
+      this.databaseService.getDatabaseAsObject();
+    if (databaseAsObject[id].knew) {
+      databaseAsObject[id].knew = !databaseAsObject[id].knew;
+    } else {
+      databaseAsObject[id].knew = true;
+    }
+    if (databaseAsObject[id].knew === true) {
+      databaseAsObject[id].toMemorize = false;
+    }
+    localStorage.setItem('scriptures', JSON.stringify(databaseAsObject));
+  }
+
+  setAsToMemorize(id: number) {
+    let databaseAsObject: CardModel =
+      this.databaseService.getDatabaseAsObject();
+    if (databaseAsObject[id].toMemorize) {
+      databaseAsObject[id].toMemorize = !databaseAsObject[id].toMemorize;
+    } else {
+      databaseAsObject[id].toMemorize = true;
+    }
+    if (databaseAsObject[id].toMemorize === true) {
+      databaseAsObject[id].knew = false;
+    }
+    localStorage.setItem('scriptures', JSON.stringify(databaseAsObject));
+  }
+
+  showScriptureName(id: number) {
+    let databaseAsObject: CardModel =
+      this.databaseService.getDatabaseAsObject();
+    if (databaseAsObject[id].showName !== undefined) {
+      databaseAsObject[id].showName = !databaseAsObject[id].showName;
+    } else {
+      databaseAsObject[id].showName = true;
+    }
+    localStorage.setItem('scriptures', JSON.stringify(databaseAsObject));
+  }
 }
