@@ -1,11 +1,11 @@
 <div class="card" *ngFor="let scripture of scripturesList">
   
   <span (click)="showName(scripture.id)">
-    <h3 *ngIf="scripture.showName" class="card-header">
+    <h3 *ngIf="getCardState(scripture.id).showName" class="card-header">
       {{ scripture.name }}
       <mat-icon>visibility</mat-icon>
     </h3>
-    <h3 *ngIf="!scripture.showName" class="card-header dont-show">
+    <h3 *ngIf="!getCardState(scripture.id).showName" class="card-header dont-show">
       Ver texto
       <mat-icon>visibility_off</mat-icon>
     </h3>
@@ -15,7 +15,7 @@
 
   <nav>
     <button
-      [ngClass]="[scripture.knew ? 'knew-button active' : 'knew-button']"
+      [ngClass]="[getCardState(scripture.id).knew ? 'knew-button active' : 'knew-button']"
       (click)="setAsKnew(scripture.id)"
     >
       <mat-icon>radio_button_unchecked</mat-icon>
@@ -23,7 +23,7 @@
 
     <button
       [ngClass]="[
-        scripture.toMemorize
+      getCardState(scripture.id).toMemorize
           ? 'to-memorize-button active'
           : 'to-memorize-button'
       ]"

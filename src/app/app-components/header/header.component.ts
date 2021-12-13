@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SigniInService } from './modules/manage-users/services/sign-in/signi-in.service';
+import { SigniInService } from 'src/app/modules/manage-users/services/sign-in/signi-in.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-export class AppComponent {
-  
+export class HeaderComponent implements OnInit {
+
   constructor(
     private signInService : SigniInService,
     private router : Router
@@ -22,7 +22,9 @@ export class AppComponent {
       }      
     })
   }
+  ngOnInit(){}
 
   title = 'Scripture Cards';
   currentUser : any;
+
 }

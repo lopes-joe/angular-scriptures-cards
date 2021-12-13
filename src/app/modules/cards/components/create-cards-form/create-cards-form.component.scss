@@ -6,10 +6,14 @@
     flex-direction: column;
     align-items: center;
     
+    hr{
+        border-top: solid 1px rgba(255, 255, 255, 0.7);
+        width: 100%;
+    }
+
     h3 {
         font-size: 24px;
         color: rgb(255, 196, 86);
-        padding-bottom: 1rem;
     }
 
     form {

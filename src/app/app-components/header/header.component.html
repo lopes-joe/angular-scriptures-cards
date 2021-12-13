@@ -1,0 +1,13 @@
+<header class="page-header">
+    <!-- <mat-icon>highlight_off</mat-icon> -->
+    <span><b>Scriptures</b></span>
+    <p class="header-welcome"><b *ngIf="currentUser">Olá, {{ currentUser.name }} </b>  </p>
+    <nav>
+        <ul>
+            <li><a routerLink="signin" href="">Entrar</a></li>
+            <li><a routerLink="signup" href="">Cadastrar</a></li>
+            <li><a routerLink="create" href="">Criar</a></li>
+            <li><a routerLink="" href="">Cards</a></li>
+        </ul>
+    </nav>
+</header>
